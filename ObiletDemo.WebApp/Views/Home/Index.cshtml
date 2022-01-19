@@ -1,0 +1,74 @@
+﻿@model ObiletDemo.WebApp.ViewModels.IndexViewModel
+
+<div class="container-fluid list-main" style="padding:20px 0;">
+    <form asp-controller="Home" asp-action="List" method="get">
+        <!-- Input and Submit elements -->
+        <div class="flex-row row">
+            <div class="col-md-4 position-relative">
+                <div class="form-group margin-bottom-form">
+                    <label class="form-label-cls">@Resource.Web_Index_Departure</label>
+                    <div class="wrapper-departure">
+                        <input type="text" autocomplete="off" id="departure" class="form-control" placeholder="İl veya İlçe Seçin" value="" />
+                        @*<select class="form-control departure" style="display:none" name="DepartureId" asp-for="DepartureId">
+        </select>*@
+                        <select class="form-control departure" style="display:none" name="DepartureId" asp-items="@(new SelectList(ViewBag.DepartureList,"Value", "Text"))" asp-for="DepartureId">
+                        </select>
+
+                    </div>
+                </div>
+                <div class="select-swap" onclick="swap()">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="form-label-cls">@Resource.Web_Index_Arrival</label>
+
+                    <div class="wrapper-arrival">
+                        <input type="text" autocomplete="off" id="arrival" class="form-control" placeholder="İl veya İlçe Seçin" value="" />
+                        @*<select class="form-control arrival" style="display:none" name="ArrivalId" asp-for="ArrivalId">
+        </select>*@
+                        <select class="form-control arrival" style="display:none" name="ArrivalId" asp-items="@(new SelectList(ViewBag.ArrivalList,"Value", "Text"))" asp-for="ArrivalId">
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="form-label-cls">@Resource.Web_Index_Date</label>
+                    <div class="row">
+                        <div class="col-9 col-md-9 col-sm-9 col-lg-9 pr-0">
+                            <div class="wrapper-calender">
+                                <input type="hidden" asp-for="DepartureDate" name="DepartureDate" value="@Model.DepartureDate.ToString("MM/dd/yyyy")"  />
+                                <input type='text' class="form-control pr-0 pl-0 date" id="date" autocomplete="off" />
+
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-3 col-sm-3 col-lg-3 pl-0">
+
+                            <button type="button" class="date-buttons mb-1 active-btn" onclick="SetDate()">@Resource.Web_Index_Today</button>
+                            <button type="button" class="date-buttons" onclick="SetDate(1)">@Resource.Web_Index_Tomorrow</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3 col-md-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#2F4EB4;">@Resource.Web_Index_Find_Ticket</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 pb-0 max-h">
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blan
+            </p>
+        </div>
+    </div>
+</div>
